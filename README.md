@@ -129,6 +129,16 @@ Replace `YOUR_API_KEY` with the key you obtained from the Google Cloud Console, 
       - For On-Device exported data: Simply choose the folder that contains your exported Timeline.json file.
    - Note that on Android you may not be allowed to load the data if it's in certain folders, such as Downloads -- move the data file to an accessible location.
 
+## Woosmap Variant (no Google key)
+
+`timeline-woosmap.html` is a port of the viewer that draws the map with the [Woosmap Map JS API](https://developers.woosmap.com/products/map-api/get-started/) and makes no Google or data API calls. Everything shown comes from your timeline files.
+
+- **Key:** you need a Woosmap public API key instead of a Google key. The page prompts for it on first open, exactly like the Google version, or you can set `window.TIMELINE_VIEWER_CONFIG.woosmapApiKey` in `timeline.local.js`.
+- **Place names** come from the `name` field in your data. Visits with no name show as Home, Work, or "Visit".
+- **Not included:** Place Details lookups, Google Places search suggestions, place photos, the place cache, and the countries and cities lists in World View. The World View heat map and every other feature remain.
+- **Search** in the sidebar matches names already in your loaded data.
+- `tools/check-woosmap.sh` is a static check that the file parses and contains no Google API usage.
+
 ## Note on API Usage & Billing
 - You can find the free usage limits, and over-the-limit pricing here: https://developers.google.com/maps/billing-and-pricing/pricing#places-pricing
 - Depending on what information is requested during the API call, it will fall into tiers, eg Essentials or Pro. Details here:
